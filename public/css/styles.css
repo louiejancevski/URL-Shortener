@@ -1,0 +1,149 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.header {
+	background-image: linear-gradient(to bottom, #7c89d5e8, #303f99f2), url(/img/bg.jpg);
+	min-height: 100vh;
+	display: grid;
+	text-align: center;
+	align-items: center;
+	place-items: center;
+	height: 100vh;
+}
+
+.hero-wrap {
+	width: 100%;
+	position: relative;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.madeBy {
+	position: absolute;
+	bottom: 0;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 300;
+	letter-spacing: 1px;
+}
+
+.madeBy a {
+	color: #fff;
+	text-transform: none;
+}
+
+.mainTitle {
+	text-transform: uppercase;
+	color: #ffffff;
+	font-size: 30px;
+	line-height: 1.4em;
+	letter-spacing: 3.9px;
+	font-weight: 300;
+}
+
+.note {
+	font-weight: 400;
+	color: rgb(255 255 255 / 48%);
+	font-size: 11px;
+	margin-bottom: 35px;
+}
+
+.btn:active,
+.btn:active:focus,
+.btn:focus {
+	box-shadow: none;
+	outline: 0 !important;
+}
+.btn {
+	font-weight: 600;
+	border-radius: 0.25rem;
+	font-size: 12px;
+	line-height: 24px;
+	letter-spacing: 0.5px;
+}
+.card {
+	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.11);
+	background-color: #fff;
+	border-radius: 7px;
+	border: none;
+	position: relative;
+	margin-bottom: 15px;
+}
+.btn:focus {
+	outline: 0;
+	box-shadow: none;
+}
+.btn {
+	font-weight: 400;
+}
+.form-control-borderless {
+	border: none;
+}
+.form-control-borderless:hover,
+.form-control-borderless:active,
+.form-control-borderless:focus {
+	border: none;
+	outline: none;
+	box-shadow: none;
+}
+
+.btn-custom,
+.btn-custom:hover,
+.btn-custom:focus {
+	background-color: #4e92e2 !important;
+	background-image: linear-gradient(to bottom, #6b7de8, #5663b4);
+	border: none;
+	box-shadow: 0 0 20px #0000002e;
+	color: white;
+	font-weight: 500;
+	padding: 8px 55px;
+}
+.search-card {
+	padding: 10px 13px 12px 17px;
+}
+.github-corner:hover .octo-arm {
+	animation: octocat-wave 560ms ease-in-out;
+}
+@keyframes octocat-wave {
+	0%,
+	100% {
+		transform: rotate(0);
+	}
+	20%,
+	60% {
+		transform: rotate(-25deg);
+	}
+	40%,
+	80% {
+		transform: rotate(10deg);
+	}
+}
+@media (max-width: 500px) {
+	.github-corner:hover .octo-arm {
+		animation: none;
+	}
+	.github-corner .octo-arm {
+		animation: octocat-wave 560ms ease-in-out;
+	}
+}
+
+.btn-animation {
+	margin-top: 45px;
+}
+
+#message {
+	letter-spacing: 1px;
+	color: #ffffffc9;
+}
+
+#createShortURL {
+	margin-top: 35px;
+	margin-bottom: 30px;
+}
+
+#message a {
+	color: #e2c00e;
+}
