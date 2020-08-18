@@ -5,7 +5,7 @@ const rateLimit = require('express-rate-limit')
 const { nanoid } = require('nanoid')
 const shortURL = require('./models/shortURL')
 
-mongoose.connect(process.env.DATABASE_URI || 'mongodb://localhost/shortner', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/shortner', { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.connection.on('connected', () => console.log('Connected to Database'))
 mongoose.connection.on('error', (err) => console.log(err))
 
@@ -14,14 +14,6 @@ app.use(express.urlencoded({ extended: true }))
 
 app.set('view engine', 'ejs')
 app.use(express.static('./public'))
-
-app.get('/:shortURL', async (req, res) => {
-	const slug = await shortURL.findOne({ slug: req.params.shortURL })
-	if (slug == null) return res.status(404).render('errors/404')
-	slug.clicks++
-	slug.save()
-	res.redirect(slug.url)
-})
 
 app.get('/', async (req, res) => {
 	res.render('index')
@@ -39,16 +31,24 @@ app.post(
 			if (!slug) slug = nanoid(5)
 			else {
 				const slugExists = await shortURL.findOne({ slug: slug })
-				if (slugExists) throw new Error('This slug is in use already 😔')
+				if (slugExists) return res.json({ message: 'This slug is in use already 😔' })
 			}
 			slug = slug.toLowerCase()
-			const created = await shortURL.create({ url, slug })
-			res.send(created)
+			const created = await shortURL.create({ url: url, slug: slug })
+			res.json(created)
 		} catch (error) {
 			next(error)
 		}
 	}
 )
+
+app.get('/:shortURL', async (req, res) => {
+	const slug = await shortURL.findOne({ slug: req.params.shortURL })
+	if (slug == null) return res.status(404).render('erors/404')
+	slug.clicks++
+	slug.save()
+	res.redirect(slug.url)
+})
 
 app.use((req, res, next) => {
 	const error = new Error('Not found')

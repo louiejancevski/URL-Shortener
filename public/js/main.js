@@ -20,19 +20,18 @@ createShortURL.addEventListener('submit', function (e) {
 			url: url,
 			slug: slug,
 		}),
-	}).then(async (response) => {
-		if (response.ok) {
-			const data = await response.json()
-			document.getElementById('message').innerHTML = `Your new short URL is now: <a target="_blank"href="/${data.slug}">${window.location.origin + '/' + data.slug}</a> `
-			gsap.from('#message', { scaleX: 1, duration: 2.5, x: 40, opacity: 0 })
-		} else if (response.status === 429) {
-			document.getElementById('message').innerHTML = `You are sending too many requests. Try again in 30 seconds.`
-		} else {
-			const result = await response.json()
-			document.getElementById('message').innerHTML = result.message
-		}
 	})
-	
+		.then(async (response) => {
+			if (response.ok) {
+				const data = await response.json()
+				data.slug ? (document.getElementById('message').innerHTML = `Your new short URL is now: <a target="_blank"href="/${data.slug}">${window.location.origin + '/' + data.slug}</a> `) : (document.getElementById('message').innerHTML = data.message)
+				gsap.from('#message', { scaleX: 1, duration: 2.5, x: 40, opacity: 0 })
+			} else if (response.status === 429) {
+				document.getElementById('message').innerHTML = `You are sending too many requests. Try again in 30 seconds.`
+			}
+		})
+		.catch((err) => console.log(err))
+
 	document.getElementById('url').value = ''
 	document.getElementById('slug').value = ''
 	e.preventDefault()
