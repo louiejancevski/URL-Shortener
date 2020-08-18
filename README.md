@@ -1,5 +1,5 @@
-## URL-Shortener
+## 🔗 URL-Shortener
 
-## URL / Live demo
+## Live demo
 
 - [shortlink.herokuapp.com](https://shortlink.herokuapp.com/)
