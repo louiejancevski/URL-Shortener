@@ -15,6 +15,14 @@ app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs')
 app.use(express.static('./public'))
 
+app.get('/:shortURL', async (req, res) => {
+	const slug = await shortURL.findOne({ slug: req.params.shortURL })
+	if (slug == null) return res.status(404).render('errors/404')
+	slug.clicks++
+	slug.save()
+	res.redirect(slug.url)
+})
+
 app.get('/', async (req, res) => {
 	res.render('index')
 })
@@ -41,14 +49,6 @@ app.post(
 		}
 	}
 )
-
-app.get('/:shortURL', async (req, res) => {
-	const slug = await shortURL.findOne({ slug: req.params.shortURL })
-	if (slug == null) return res.status(404).render('errors/404')
-	slug.clicks++
-	slug.save()
-	res.redirect(slug.url)
-})
 
 app.use((req, res, next) => {
 	const error = new Error('Not found')
