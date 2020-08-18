@@ -5,7 +5,7 @@ const rateLimit = require('express-rate-limit')
 const { nanoid } = require('nanoid')
 const shortURL = require('./models/shortURL')
 
-mongoose.connect('mongodb://localhost/shortner', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DATABASE_URI || 'mongodb://localhost/shortner', { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.connection.on('connected', () => console.log('Connected to Database'))
 mongoose.connection.on('error', (err) => console.log(err))
 
