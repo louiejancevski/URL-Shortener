@@ -3,7 +3,7 @@
 - Version 1.0
 
 ## Live demo
-- [shortlink.herokuapp.com](https://shortlink.herokuapp.com/)
+- [shortlink.herokuapp.com](https://shortlink.herokuapp.com/) 
 
 ## About this project
 The main idea was to have a simple tool in which users can input a long URL and instantly get a shorter one that points to the same place.
